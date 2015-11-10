@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="author" content="Juan Salvador Aleixandre" />
+    <meta name="date" content="09/11/2015"/>
+    <meta name="generator" content="easybook 4.9.0"/>
+
+    <title>Mozilla Add-on builder: Posibilidades a la hora de abrir un link desde una entrada de menú | Blog Cosillas de Juansal</title>
+
+    <link rel="stylesheet" href="./css/easybook.css" />
+
+</head>
+
+<body class="item chapter">
+<div class="container">
+<div class="menu">
+    <div class="row">
+        <h1 class="span9"><a href="./index.html">Blog Cosillas de Juansal</a></h1>
+        <p class="span3">
+                        <a href="./capitulo-47.html"><span>&larr;</span> Anterior</a>
+            
+                        <a href="./capitulo-49.html">Siguiente <span>&rarr;</span></a>
+                    </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span9">
+        <h1 id="2013_05"><span>Capítulo 4.8</span> Mozilla Add-on builder: Posibilidades a la hora de abrir un link desde una entrada de menú</h1>
+        <p>Las posibilidades son las siguientes:</p>
+
+<p><code>require("windows").browserWindows.open(pageURL);</code> abre la url en una ventana nueva.</p>
+
+<p><code>require("windows").browserWindows.activewindow.open(pageURL);</code> abre la url en una pestaña nueva.</p>
+
+<p><code>require("tabs").open(pageURL);</code> abre la url en una pestaña nueva.</p>
+
+<p><code>require("tabs").activeTab.url=pageURL;</code> abre la url en la pestaña actual.</p>
+
+<p>Para el siguiente ejemplo los cambios habría que hacerlos dentro del onMessage:</p>
+
+<p>Fichero: <strong>main.js</strong></p>
+
+<div class="code javascript">
+<pre class="javascript">&nbsp;
+<span class="kw1">var</span> contextMenu <span class="sy0">=</span> require<span class="br0">&#40;</span><span class="st0">&quot;context-menu&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="kw1">var</span> data <span class="sy0">=</span> require<span class="br0">&#40;</span><span class="st0">&quot;self&quot;</span><span class="br0">&#41;</span>.<span class="me1">data</span><span class="sy0">;</span>
+&nbsp;
+<span class="co1">//Menu contextual para cuando se selecciona un link en la página.</span>
+<span class="kw1">var</span> searchMenu <span class="sy0">=</span> contextMenu.<span class="me1">Menu</span><span class="br0">&#40;</span><span class="br0">&#123;</span>
+  label<span class="sy0">:</span> <span class="st0">&quot;Abrir URL &quot;</span><span class="sy0">,</span>
+  context<span class="sy0">:</span> contextMenu.<span class="me1">SelectorContext</span><span class="br0">&#40;</span><span class="st0">&quot;a[href]&quot;</span><span class="br0">&#41;</span><span class="sy0">,</span>
+  contentScriptFile<span class="sy0">:</span> <span class="br0">&#91;</span>data.<span class="me1">url</span><span class="br0">&#40;</span><span class="st0">&quot;links.js&quot;</span><span class="br0">&#41;</span><span class="br0">&#93;</span><span class="sy0">,</span>
+  items<span class="sy0">:</span> <span class="br0">&#91;</span><span class="br0">&#93;</span><span class="sy0">,</span>
+  onMessage<span class="sy0">:</span> <span class="kw1">function</span> <span class="br0">&#40;</span>pageURL<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    require<span class="br0">&#40;</span><span class="st0">&quot;tabs&quot;</span><span class="br0">&#41;</span>.<span class="me1">open</span><span class="br0">&#40;</span>pageURL<span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+
+<p>Fichero: <strong>links.js</strong></p>
+
+<div class="code javascript">
+<pre class="javascript">self.<span class="me1">on</span><span class="br0">&#40;</span><span class="st0">&quot;click&quot;</span><span class="sy0">,</span> <span class="kw1">function</span> <span class="br0">&#40;</span>node<span class="sy0">,</span> data<span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <span class="kw1">var</span> searchURL <span class="sy0">=</span> data <span class="sy0">+</span> node.<span class="me1">baseURI</span><span class="sy0">;</span>
+    self.<span class="me1">postMessage</span><span class="br0">&#40;</span>searchURL<span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+
+    </div>
+
+    <div class="span3">
+        <div class="item local_toc">
+            <h3>Índice de contenidos</h3>
+
+            <ul class="unstyled">
+                                                <li class="level-1">
+                        <span></span>
+                        <a class="internal" href="./capitulo-48.html#2013_05">Mozilla Add-on builder: Posibilidades a la hora de abrir un link desde una entrada de menú</a>
+                    </li>
+                                        </ul>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

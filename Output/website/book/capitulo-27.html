@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="author" content="Juan Salvador Aleixandre" />
+    <meta name="date" content="09/11/2015"/>
+    <meta name="generator" content="easybook 4.9.0"/>
+
+    <title>Crear un mirror de un repositorio de subversion | Blog Cosillas de Juansal</title>
+
+    <link rel="stylesheet" href="./css/easybook.css" />
+
+</head>
+
+<body class="item chapter">
+<div class="container">
+<div class="menu">
+    <div class="row">
+        <h1 class="span9"><a href="./index.html">Blog Cosillas de Juansal</a></h1>
+        <p class="span3">
+                        <a href="./capitulo-26.html"><span>&larr;</span> Anterior</a>
+            
+                        <a href="./capitulo-28.html">Siguiente <span>&rarr;</span></a>
+                    </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span9">
+        <h1 id="2010_07"><span>Capítulo 2.7</span> Crear un mirror de un repositorio de subversion</h1>
+        <p>Para crear un mirror de un repositorio de subversion se siguen los siguientes pasos.
+La mayoria de los pasos se hacen sobre el mirror.</p>
+
+<p>Creamos el repositorio en la máquina del mirror.
+Creamos un usuario en ambos servidores para realizar la sincronización (en este ejemplo el usuario creado ha sido: syncuser)
+Lanzamos los siguientes comandos en el mirror:</p>
+
+<div class="code bash">
+<pre class="bash"><span class="kw2">svnsync</span> initialize file:<span class="sy0">///</span>ruta_local_mirror  ruta_servidor_svn <span class="re5">--username</span> syncuser <span class="re5">--password</span> syncuser
+<span class="kw2">svn proplist</span> <span class="re5">--revprop</span> <span class="re5">-r</span> <span class="nu0">0</span> file:<span class="sy0">///</span>ruta_local_mirror
+<span class="kw2">svn propget</span> svn:sync-from-url <span class="re5">--revprop</span> <span class="re5">-r</span> <span class="nu0">0</span> file:<span class="sy0">///</span>ruta_local_mirror
+<span class="kw2">svn propdel</span> svn:sync-lock <span class="re5">--revprop</span> <span class="re5">-r</span> <span class="nu0">0</span> file:<span class="sy0">///</span>ruta_local_mirror</pre>
+</div>
+
+<p>Con esto ya tenemos el mirror montado y preparado para funcionar. Un comando interesante a ejecutar, aunque no necesario, es el siguiente, el cual se encarga de la sincronización inicial de los repositorios. Como he dicho no es necesario, pero si el repositorio del que vamos a hacer el mirror ya contiene información es recomendable, especialmente si este ya tiene muchos commits realizados.</p>
+
+<div class="code bash">
+<pre class="bash"><span class="kw2">svnsync</span> <span class="re5">--non-interactive</span> <span class="kw2">sync</span> file:<span class="sy0">///</span>ruta_local_mirror <span class="re5">--username</span> syncuser <span class="re5">--password</span> syncuser</pre>
+</div>
+
+<p>Después de esta sincronización inicial es conveniente ejecutar el siguiente comando para que se copien las propiedades del repositorio (sólo es necesario esta primera vez):</p>
+
+<div class="code bash">
+<pre class="bash"><span class="kw2">svnsync</span> copy-revprops file:<span class="sy0">///</span>ruta_local_mirror <span class="re5">--username</span> syncuser <span class="re5">--password</span> syncuser</pre>
+</div>
+
+<p>Después de esto en el repositorio origen del subversion se puede crear un hook para que la sincronización se realice de forma automática, el hook en el que incluir el siguiente comando es el post_commit:</p>
+
+<div class="code bash">
+<pre class="bash"><span class="kw2">svnsync</span> <span class="re5">--non-interactive</span> <span class="kw2">sync</span> ruta_trabajo_mirror <span class="re5">--username</span> syncuser <span class="re5">--password</span> syncuser</pre>
+</div>
+
+    </div>
+
+    <div class="span3">
+        <div class="item local_toc">
+            <h3>Índice de contenidos</h3>
+
+            <ul class="unstyled">
+                                                <li class="level-1">
+                        <span></span>
+                        <a class="internal" href="./capitulo-27.html#2010_07">Crear un mirror de un repositorio de subversion</a>
+                    </li>
+                                        </ul>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

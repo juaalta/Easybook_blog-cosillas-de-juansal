@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="author" content="Juan Salvador Aleixandre" />
+    <meta name="date" content="09/11/2015"/>
+    <meta name="generator" content="easybook 4.9.0"/>
+
+    <title>Forzar a un máquina Virtual de VMware a usar un adaptador de red específico | Blog Cosillas de Juansal</title>
+
+    <link rel="stylesheet" href="./css/easybook.css" />
+
+</head>
+
+<body class="item chapter">
+<div class="container">
+<div class="menu">
+    <div class="row">
+        <h1 class="span9"><a href="./index.html">Blog Cosillas de Juansal</a></h1>
+        <p class="span3">
+                        <a href="./capitulo-41.html"><span>&larr;</span> Anterior</a>
+            
+                        <a href="./capitulo-43.html">Siguiente <span>&rarr;</span></a>
+                    </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span9">
+        <h1 id="2012_02"><span>Capítulo 4.2</span> Forzar a un máquina Virtual de VMware a usar un adaptador de red específico</h1>
+        <p>Para hacer esto existen 2 formas distintas, estas son:</p>
+
+<h2 id="modificar-el-fichero-vmx-a-mano">4.2.1 Modificar el fichero vmx a mano:</h2>
+
+<p>Se han de añadir/modificar las siguientes líneas, ya que por defecto el VMware usa el vmnet0:</p>
+
+<div class="code code">
+<pre class="code">ethernet0.connectionType = &quot;custom&quot;
+ethernet0.vnet = &quot;VMnet2&quot;</pre>
+</div>
+
+<p>En este caso el VMnet2 ha de estar creado y asignado a una tarjeta de red, si no, esta solución no funciona.</p>
+
+<h2 id="utilizar-el-virtual-network-editor-lo-que-se-indica-en-este-punto-solo-funciona-hasta-la-version-5-del-vmware-player">4.2.2 Utilizar el Virtual Network Editor: (Lo que se indica en este punto sólo funciona hasta la versión 5 del VMware Player)</h2>
+
+<p>En este programa hay que cambiar las opciones automáticas del vmnet0 para que seleccione el adaptador que deseemos.
+Si tenemos el VMware Player este programa no se instala, pero hay una forma de instalarlo, ya que sí que se encuentra dentro del instalable. Para hacer esto se han de seguir los siguientes pasos:
+* Descomprimir el instalable mendiante el comando: <code>VMware-player-4.0.1-528992.exe /e .\extract</code>
+* Entrar en la carpeta <em>extract</em> y buscar el fichero <em>network.cab</em>.
+* Del fichero este obtener el fichero <em>vmnetcfg.exe</em>,
+* Mover este último a la carpeta en la que se haya instalado el VMware Player.
+* Crear un acceso directo a este último (esto es opcional).</p>
+
+<p>A partir de la versión 6 del VMware Player esto ya no puede hacerse, ya que estos ficheros no están, han de obtenerse desde un VMware Workstation.</p>
+
+    </div>
+
+    <div class="span3">
+        <div class="item local_toc">
+            <h3>Índice de contenidos</h3>
+
+            <ul class="unstyled">
+                                                <li class="level-1">
+                        <span></span>
+                        <a class="internal" href="./capitulo-42.html#2012_02">Forzar a un máquina Virtual de VMware a usar un adaptador de red específico</a>
+                    </li>
+                                    <li class="level-2">
+                        <span>4.2.1</span>
+                        <a class="internal" href="./capitulo-42.html#modificar-el-fichero-vmx-a-mano">Modificar el fichero vmx a mano:</a>
+                    </li>
+                                    <li class="level-2">
+                        <span>4.2.2</span>
+                        <a class="internal" href="./capitulo-42.html#utilizar-el-virtual-network-editor-lo-que-se-indica-en-este-punto-solo-funciona-hasta-la-version-5-del-vmware-player">Utilizar el Virtual Network Editor: (Lo que se indica en este punto sólo funciona hasta la versión 5 del VMware Player)</a>
+                    </li>
+                                        </ul>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

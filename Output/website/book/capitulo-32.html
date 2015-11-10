@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="author" content="Juan Salvador Aleixandre" />
+    <meta name="date" content="09/11/2015"/>
+    <meta name="generator" content="easybook 4.9.0"/>
+
+    <title>Cambiar el propietario y el grupo al que pertenece un fichero o una carpeta en linux | Blog Cosillas de Juansal</title>
+
+    <link rel="stylesheet" href="./css/easybook.css" />
+
+</head>
+
+<body class="item chapter">
+<div class="container">
+<div class="menu">
+    <div class="row">
+        <h1 class="span9"><a href="./index.html">Blog Cosillas de Juansal</a></h1>
+        <p class="span3">
+                        <a href="./capitulo-31.html"><span>&larr;</span> Anterior</a>
+            
+                        <a href="./capitulo-33.html">Siguiente <span>&rarr;</span></a>
+                    </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span9">
+        <h1 id="2011_02"><span>Capítulo 3.2</span> Cambiar el propietario y el grupo al que pertenece un fichero o una carpeta en linux</h1>
+        <h2 id="propietario">3.2.1 Propietario</h2>
+
+<p>Para cambiar el propietario de un fichero se utiliza el siguiente comando:</p>
+
+<div class="code bash">
+<pre class="bash"><span class="kw2">chown</span> Nuevo_Propietario fichero</pre>
+</div>
+
+<p>Para cambiar el propietario de una carpeta:</p>
+
+<div class="code bash">
+<pre class="bash"><span class="kw2">chown</span> Nuevo_Propietario carpeta</pre>
+</div>
+
+<p>Para cambair el propietario de una carpeta y su contenido de forma recursiva:</p>
+
+<div class="code bash">
+<pre class="bash"><span class="kw2">chown</span> <span class="re5">-R</span> Nuevo_Propietario carpeta</pre>
+</div>
+
+<h2 id="grupo">3.2.2 Grupo</h2>
+
+<p>Para cambiar el grupo de un fichero se utiliza el siguiente comando:</p>
+
+<div class="code bash">
+<pre class="bash"><span class="kw2">chgrp</span> Nuevo_Grupo fichero</pre>
+</div>
+
+<p>Para cambiar el grupo de una carpeta:</p>
+
+<div class="code bash">
+<pre class="bash"><span class="kw2">chgrp</span> Nuevo_Grupo carpeta</pre>
+</div>
+
+<p>Para cambair el grupo de una carpeta y su contenido de forma recursiva:</p>
+
+<div class="code bash">
+<pre class="bash"><span class="kw2">chgrp</span> <span class="re5">-R</span> Nuevo_Grupo carpeta</pre>
+</div>
+
+<h2 id="propietario-y-grupo">3.2.3 Propietario y grupo</h2>
+
+<p>Para cambiar el propietario y el grupo de un fichero se utiliza el siguiente comando:</p>
+
+<div class="code bash">
+<pre class="bash"><span class="kw2">chown</span> Nuevo_Propietario:Nuevo_Grupo fichero</pre>
+</div>
+
+<p>Para cambiar el propietario y el grupo de una carpeta:</p>
+
+<div class="code bash">
+<pre class="bash"><span class="kw2">chown</span> Nuevo_Propietario:Nuevo_Grupo carpeta</pre>
+</div>
+
+<p>Para cambair el propietario y el grupo de una carpeta y su contenido de forma recursiva:</p>
+
+<div class="code bash">
+<pre class="bash"><span class="kw2">chown</span> <span class="re5">-R</span> Nuevo_Propietario:Nuevo_Grupo carpeta</pre>
+</div>
+
+    </div>
+
+    <div class="span3">
+        <div class="item local_toc">
+            <h3>Índice de contenidos</h3>
+
+            <ul class="unstyled">
+                                                <li class="level-1">
+                        <span></span>
+                        <a class="internal" href="./capitulo-32.html#2011_02">Cambiar el propietario y el grupo al que pertenece un fichero o una carpeta en linux</a>
+                    </li>
+                                    <li class="level-2">
+                        <span>3.2.1</span>
+                        <a class="internal" href="./capitulo-32.html#propietario">Propietario</a>
+                    </li>
+                                    <li class="level-2">
+                        <span>3.2.2</span>
+                        <a class="internal" href="./capitulo-32.html#grupo">Grupo</a>
+                    </li>
+                                    <li class="level-2">
+                        <span>3.2.3</span>
+                        <a class="internal" href="./capitulo-32.html#propietario-y-grupo">Propietario y grupo</a>
+                    </li>
+                                        </ul>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="author" content="Juan Salvador Aleixandre" />
+    <meta name="date" content="09/11/2015"/>
+    <meta name="generator" content="easybook 4.9.0"/>
+
+    <title>Log4Java en Java | Blog Cosillas de Juansal</title>
+
+    <link rel="stylesheet" href="./css/easybook.css" />
+
+</head>
+
+<body class="item chapter">
+<div class="container">
+<div class="menu">
+    <div class="row">
+        <h1 class="span9"><a href="./index.html">Blog Cosillas de Juansal</a></h1>
+        <p class="span3">
+                        <a href="./capitulo-45.html"><span>&larr;</span> Anterior</a>
+            
+                        <a href="./capitulo-47.html">Siguiente <span>&rarr;</span></a>
+                    </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span9">
+        <h1 id="2013_03"><span>Capítulo 4.6</span> Log4Java en Java</h1>
+        <p>Para poder utilizar el Log4Java en una aplicación de Java se han de seguir los siguientes pasos.</p>
+
+<p>Añadir los siguientes imports a los ficheros que vayan a utilizarlo.</p>
+
+<div class="code java">
+<pre class="java"><span class="kw1">import</span> <span class="co2">org.apache.log4j.Logger</span><span class="sy0">;</span></pre>
+</div>
+
+<p>Al principio de la aplicación hay que introducir esta línea:</p>
+
+<div class="code java">
+<pre class="java">PropertyConfigurator.<span class="me1">configure</span><span class="br0">&#40;</span><span class="st0">&quot;log4j.properties&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+
+<p>Al principio de la clase se ha de introducir la siguiente línea:</p>
+
+<div class="code java">
+<pre class="java"><span class="kw1">private</span> <span class="kw1">final</span> Logger logger <span class="sy0">=</span> Logger.<span class="me1">getLogger</span><span class="br0">&#40;</span><span class="kw1">this</span>.<span class="me1">getClass</span><span class="br0">&#40;</span><span class="br0">&#41;</span>.<span class="me1">getName</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+
+<p>Por cada salida a log que queramos obtener tenemos que introducir una de las siguientes líneas de código, dependiendo del nivel de log deseado:</p>
+
+<div class="code java">
+<pre class="java">logger.<span class="me1">debug</span><span class="br0">&#40;</span>texto_a_sacar_por_log<span class="br0">&#41;</span><span class="sy0">;</span>
+logger.<span class="me1">error</span><span class="br0">&#40;</span>texto_a_sacar_por_log<span class="br0">&#41;</span><span class="sy0">;</span>
+logger.<span class="me1">fatal</span><span class="br0">&#40;</span>texto_a_sacar_por_log<span class="br0">&#41;</span><span class="sy0">;</span>
+logger.<span class="me1">info</span><span class="br0">&#40;</span>texto_a_sacar_por_log<span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+
+<p>Si además queremos que saque la información de una excepción obtenida:</p>
+
+<div class="code java">
+<pre class="java">logger.<span class="me1">debug</span><span class="br0">&#40;</span>texto_a_sacar_por_log, excepción<span class="br0">&#41;</span><span class="sy0">;</span>
+logger.<span class="me1">error</span><span class="br0">&#40;</span>texto_a_sacar_por_log, excepción<span class="br0">&#41;</span><span class="sy0">;</span>
+logger.<span class="me1">fatal</span><span class="br0">&#40;</span>texto_a_sacar_por_log, excepción<span class="br0">&#41;</span><span class="sy0">;</span>
+logger.<span class="me1">info</span><span class="br0">&#40;</span>texto_a_sacar_por_log, excepción<span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+
+<p>Ejemplo de un fichero de configuración, esta vez en vez de utilizar un fichero xml utilizaré un fichero properties, en nuestro caso llamado <code>log4j.properties</code>:</p>
+
+<div class="code java">
+<pre class="java"><span class="co1">// Registro de los appenders, junto al nivel de log.</span>
+log4j.<span class="me1">rootLogger</span><span class="sy0">=</span>ALL, FLOG
+&nbsp;
+<span class="co1">// Appender de fichero circular (RollingFileAppender)</span>
+log4j.<span class="me1">appender</span>.<span class="me1">FLOG</span><span class="sy0">=</span>org.<span class="me1">apache</span>.<span class="me1">log4j</span>.<span class="me1">RollingFileAppender</span>
+log4j.<span class="me1">appender</span>.<span class="me1">FLOG</span>.<span class="kw3">File</span><span class="sy0">=</span>log<span class="sy0">/</span>fingerreader2.<span class="me1">log</span>
+&nbsp;
+ <span class="co1">// Configuración del formato del contenido del fichero de log.</span>
+log4j.<span class="me1">appender</span>.<span class="me1">FLOG</span>.<span class="me1">layout</span><span class="sy0">=</span>org.<span class="me1">apache</span>.<span class="me1">log4j</span>.<span class="me1">PatternLayout</span>
+log4j.<span class="me1">appender</span>.<span class="me1">FLOG</span>.<span class="me1">layout</span>.<span class="me1">ConversionPattern</span><span class="sy0">=%</span>d <span class="br0">&#91;</span><span class="sy0">%</span>t<span class="br0">&#93;</span> <span class="sy0">%-</span>5p <span class="sy0">%</span>c <span class="sy0">-</span> <span class="sy0">%</span>m<span class="sy0">%</span>n
+&nbsp;
+<span class="co1">// Configuración del tama\u00f1o del fichero y del número de ficheros</span>
+log4j.<span class="me1">appender</span>.<span class="me1">FLOG</span>.<span class="me1">MaxFileSize</span><span class="sy0">=</span>10240KB
+log4j.<span class="me1">appender</span>.<span class="me1">FLOG</span>.<span class="me1">MaxBackupIndex</span><span class="sy0">=</span><span class="nu0">10</span></pre>
+</div>
+
+    </div>
+
+    <div class="span3">
+        <div class="item local_toc">
+            <h3>Índice de contenidos</h3>
+
+            <ul class="unstyled">
+                                                <li class="level-1">
+                        <span></span>
+                        <a class="internal" href="./capitulo-46.html#2013_03">Log4Java en Java</a>
+                    </li>
+                                        </ul>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

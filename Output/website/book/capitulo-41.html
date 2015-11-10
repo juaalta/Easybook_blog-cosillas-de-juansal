@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="author" content="Juan Salvador Aleixandre" />
+    <meta name="date" content="09/11/2015"/>
+    <meta name="generator" content="easybook 4.9.0"/>
+
+    <title>Conversión de disco virtual de VirtualBox a VMware | Blog Cosillas de Juansal</title>
+
+    <link rel="stylesheet" href="./css/easybook.css" />
+
+</head>
+
+<body class="item chapter">
+<div class="container">
+<div class="menu">
+    <div class="row">
+        <h1 class="span9"><a href="./index.html">Blog Cosillas de Juansal</a></h1>
+        <p class="span3">
+                        <a href="./capitulo-4.html"><span>&larr;</span> Anterior</a>
+            
+                        <a href="./capitulo-42.html">Siguiente <span>&rarr;</span></a>
+                    </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span9">
+        <h1 id="2012_01"><span>Capítulo 4.1</span> Conversión de disco virtual de VirtualBox a VMware</h1>
+        <p>Los pasos a seguir para la conversión del disco virtual de la máquina de VirtualBox son los siguientes:
+- Entrar en la carpeta en la que se encuentra el disco virtual a convertir.
+- Ejecutar el siguiente comando (para esto ha de estar el VirtualBox instalado):</p>
+
+<div class="code bash">
+<pre class="bash"><span class="st0">&quot;c:\Program Files\Oracle<span class="es1">\V</span>irtualBox<span class="es1">\V</span>BoxManage.exe&quot;</span> clonehd DiscoOrigen.vdi DiscoDestino.vmdk  <span class="re5">--format</span> vmdk <span class="re5">--variant</span> standard</pre>
+</div>
+
+<p>Este comando es de consola, por tanto no se puede ejecutar desde entorno gráfico.</p>
+
+<p><strong>DiscoOrigen.vdi</strong> es el disco en VirtualBox, el origen.</p>
+
+<p><strong>DiscoDestomp.vmdk</strong> es el disco destino en VMware.</p>
+
+<p>La ruta que ejecuta el <code>VBoxManage.exe</code>, en el ejemplo, es la por defecto de la instalación y puede cambiar.</p>
+
+    </div>
+
+    <div class="span3">
+        <div class="item local_toc">
+            <h3>Índice de contenidos</h3>
+
+            <ul class="unstyled">
+                                                <li class="level-1">
+                        <span></span>
+                        <a class="internal" href="./capitulo-41.html#2012_01">Conversión de disco virtual de VirtualBox a VMware</a>
+                    </li>
+                                        </ul>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

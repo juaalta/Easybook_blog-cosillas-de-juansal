@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="author" content="Juan Salvador Aleixandre" />
+    <meta name="date" content="09/11/2015"/>
+    <meta name="generator" content="easybook 4.9.0"/>
+
+    <title>Web con información sobre temperatura y discos duros en la cubietruck - cubieboard 3 | Blog Cosillas de Juansal</title>
+
+    <link rel="stylesheet" href="./css/easybook.css" />
+
+</head>
+
+<body class="item chapter">
+<div class="container">
+<div class="menu">
+    <div class="row">
+        <h1 class="span9"><a href="./index.html">Blog Cosillas de Juansal</a></h1>
+        <p class="span3">
+                        <a href="./capitulo-65.html"><span>&larr;</span> Anterior</a>
+            
+                        <a href="./capitulo-67.html">Siguiente <span>&rarr;</span></a>
+                    </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span9">
+        <h1 id="2015_06"><span>Capítulo 6.6</span> Web con información sobre temperatura y discos duros en la cubietruck - cubieboard 3</h1>
+        <h2 id="finalidad-del-articulo">6.6.1 Finalidad del artículo</h2>
+
+<p>La finalidad de este artículo aprovechar los datos obtenidos a partir del <a href="../2014/informacion_sobre_temperatura_y_discos_duros_en_la_cubietruck_cubieboard_3.md">anterior artículo sobre la cubietruck</a> y mostrar los datos de forma fácil desde una página web.</p>
+
+<h2 id="software-instalado">6.6.2 Software instalado</h2>
+
+<p>Para poder hacer que la cubietruck muestre la web que se desea se ha de instalar el apache y el php.</p>
+
+<h3 id="apache">6.6.2.1 Apache</h3>
+
+<p>Para instalar el servidor apache se ha de lanzar el siguiente comando:</p>
+
+<div class="code bash">
+<pre class="bash"><span class="kw2">apt-get install</span> apache2</pre>
+</div>
+
+<h3 id="php">6.6.2.2 PHP</h3>
+
+<p>Para instalar el php se ha de lanzar el siguiente comando:</p>
+
+<div class="code bash">
+<pre class="bash"><span class="kw2">apt-get install</span> php5</pre>
+</div>
+
+<h2 id="creacion-de-la-web">6.6.3 Creación de la web:</h2>
+
+<p>La web que se ha creado aprovecha los comandos que se comentaron en el artículo anterior sobre <a href="../2014/informacion_sobre_temperatura_y_discos_duros_en_la_cubietruck_cubieboard_3.md">monitorización de temperatura y discos duros de la cubietruck</a>.
+Los pasos seguidos han sido los siguientes:</p>
+
+<ul>
+<li>Se cambia el nombre del fichero <code>/var/www/index.html</code> por <code>/var/www/_index.html</code> para evitar que cuando nos conectemos lo arranque sin indicar página muestre la por defecto de apache.</li>
+<li>Se crea el fichero <code>/var/www/index.php</code>, para que arranque por defecto, cuyo contenido es:</li>
+</ul>
+
+<div class="code php">
+<pre class="php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="kw1">echo</span> <span class="st_h">'&lt;Hr /&gt;Espacio en disco &lt;hr /&gt;'</span><span class="sy0">;</span>
+<span class="kw1">echo</span> <span class="st_h">'&lt;pre&gt;'</span><span class="sy0">;</span>
+&nbsp;
+<span class="co1">// Muestra el resultado completo del comando &quot;df -h&quot;, y devuelve la</span>
+<span class="co1">// ultima linea de la salida en $ultima_linea. Almacena el valor de</span>
+<span class="co1">// retorno del comando en $retval.</span>
+<span class="re0">$ultima_linea</span> <span class="sy0">=</span> <span class="kw3">system</span><span class="br0">&#40;</span><span class="st_h">'df -h'</span><span class="sy0">,</span> <span class="re0">$retval</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw1">echo</span> <span class="st_h">'&lt;/pre&gt;'</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw1">echo</span> <span class="st_h">'&lt;Hr /&gt;Temperatura CPU&lt;hr /&gt;'</span><span class="sy0">;</span>
+<span class="kw1">echo</span> <span class="st_h">'&lt;pre&gt;'</span><span class="sy0">;</span>
+&nbsp;
+<span class="re0">$ultima_linea</span> <span class="sy0">=</span> <span class="kw3">system</span><span class="br0">&#40;</span><span class="st_h">'/home/linaro/scripts/temperatura.sh'</span><span class="sy0">,</span> <span class="re0">$retval</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw1">echo</span> <span class="st_h">'&lt;/pre&gt;'</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw1">echo</span> <span class="st_h">'&lt;Hr /&gt;Temperatura disco duro&lt;hr /&gt;'</span><span class="sy0">;</span>
+<span class="kw1">echo</span> <span class="st_h">'&lt;pre&gt;'</span><span class="sy0">;</span>
+&nbsp;
+<span class="re0">$ultima_linea</span> <span class="sy0">=</span> <span class="kw3">system</span><span class="br0">&#40;</span><span class="st_h">'sudo hddtemp /dev/sda'</span><span class="sy0">,</span> <span class="re0">$retval</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw1">echo</span> <span class="st_h">'&lt;/pre&gt;'</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw1">echo</span> <span class="st_h">'&lt;Hr /&gt;SMART disco duro&lt;hr /&gt;'</span><span class="sy0">;</span>
+<span class="kw1">echo</span> <span class="st_h">'&lt;pre&gt;'</span><span class="sy0">;</span>
+&nbsp;
+<span class="re0">$ultima_linea</span> <span class="sy0">=</span> <span class="kw3">system</span><span class="br0">&#40;</span><span class="st_h">'sudo smartctl -A /dev/sda'</span><span class="sy0">,</span> <span class="re0">$retval</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw1">echo</span> <span class="st_h">'&lt;/pre&gt;'</span><span class="sy0">;</span>
+&nbsp;
+&nbsp;
+<span class="sy1">?&gt;</span></pre>
+</div>
+
+<p>El resultado de la consulta de la web (en mi caso http://192.168.0.20) ha sido:</p>
+
+<div class="code code">
+<pre class="code">--------------------------------------------------------------------------------------------------
+## Espacio en discoFilesystem      Size  Used Avail Use% Mounted on
+/dev/root        29G  1.6G   26G   6% /
+devtmpfs        913M  4.0K  913M   1% /dev
+tmpfs            20M  4.0K   20M   1% /tmp
+none            183M  188K  183M   1% /run
+none            5.0M     0  5.0M   0% /run/lock
+none            913M     0  913M   0% /run/shm
+none            100M   12K  100M   1% /run/user
+## /dev/sda1       917G   22G  850G   3% /media/hdd## Temperatura CPU## CPU Temperature = 53.8Â°C## Temperatura disco duro## /dev/sda: WDC WD10JPVX-22JC3T0: 54 C## SMART disco durosmartctl 5.43 2012-06-30 r3573 [armv7l-linux-3.4.61+] (local build)
+Copyright (C) 2002-12 by Bruce Allen, http://smartmontools.sourceforge.net
+&nbsp;
+=== START OF READ SMART DATA SECTION ===
+SMART Attributes Data Structure revision number: 16
+Vendor Specific SMART Attributes with Thresholds:
+ID# ATTRIBUTE_NAME          FLAG     VALUE WORST THRESH TYPE      UPDATED  WHEN_FAILED RAW_VALUE
+  1 Raw_Read_Error_Rate     0x002f   200   200   051    Pre-fail  Always       -       0
+  3 Spin_Up_Time            0x0027   187   178   021    Pre-fail  Always       -       1608
+  4 Start_Stop_Count        0x0032   063   063   000    Old_age   Always       -       37910
+  5 Reallocated_Sector_Ct   0x0033   200   200   140    Pre-fail  Always       -       0
+  7 Seek_Error_Rate         0x002e   200   200   000    Old_age   Always       -       0
+  9 Power_On_Hours          0x0032   097   097   000    Old_age   Always       -       2257
+ 10 Spin_Retry_Count        0x0032   100   100   000    Old_age   Always       -       0
+ 11 Calibration_Retry_Count 0x0032   100   100   000    Old_age   Always       -       0
+ 12 Power_Cycle_Count       0x0032   100   100   000    Old_age   Always       -       220
+191 G-Sense_Error_Rate      0x0032   099   099   000    Old_age   Always       -       1
+192 Power-Off_Retract_Count 0x0032   200   200   000    Old_age   Always       -       218
+193 Load_Cycle_Count        0x0032   178   178   000    Old_age   Always       -       66334
+194 Temperature_Celsius     0x0022   093   085   000    Old_age   Always       -       54
+196 Reallocated_Event_Count 0x0032   200   200   000    Old_age   Always       -       0
+197 Current_Pending_Sector  0x0032   200   200   000    Old_age   Always       -       0
+198 Offline_Uncorrectable   0x0030   100   253   000    Old_age   Offline      -       0
+199 UDMA_CRC_Error_Count    0x0032   200   200   000    Old_age   Always       -       0
+200 Multi_Zone_Error_Rate   0x0008   100   253   000    Old_age   Offline      -       0</pre>
+</div>
+
+    </div>
+
+    <div class="span3">
+        <div class="item local_toc">
+            <h3>Índice de contenidos</h3>
+
+            <ul class="unstyled">
+                                                <li class="level-1">
+                        <span></span>
+                        <a class="internal" href="./capitulo-66.html#2015_06">Web con información sobre temperatura y discos duros en la cubietruck - cubieboard 3</a>
+                    </li>
+                                    <li class="level-2">
+                        <span>6.6.1</span>
+                        <a class="internal" href="./capitulo-66.html#finalidad-del-articulo">Finalidad del artículo</a>
+                    </li>
+                                    <li class="level-2">
+                        <span>6.6.2</span>
+                        <a class="internal" href="./capitulo-66.html#software-instalado">Software instalado</a>
+                    </li>
+                                    <li class="level-2">
+                        <span>6.6.3</span>
+                        <a class="internal" href="./capitulo-66.html#creacion-de-la-web">Creación de la web:</a>
+                    </li>
+                                        </ul>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
