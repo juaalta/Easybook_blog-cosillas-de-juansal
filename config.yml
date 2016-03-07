@@ -70,6 +70,8 @@ book:
         - { element: chapter, number: 6.16, content: 2015/construccion_de_maquina_recreativa_-_el_sonido.md }
         - { element: chapter, number: 6.17, content: 2015/construccion_de_maquina_recreativa_-_agradecimientos.md }
         - { element: chapter, number: 6.18, content: 2015/sistema_de_apertura_de_un_escaparate_con_arduino.md }
+        - { element: chapter, number: 7, content: 2016/README.md }
+        - { element: chapter, number: 7.1, content: 2016/maquina_virtual_para_trabajar_con_documentos_en_markdown_-_nueva_version.md }
         - { element: chapter, number: A.0, content: secciones_adicionales/README.md }
         - { element: chapter, number: A.1, content: secciones_adicionales/links_interesantes.md }
         - { element: chapter, number: A.2, content: secciones_adicionales/plugins_de_firefox.md }
