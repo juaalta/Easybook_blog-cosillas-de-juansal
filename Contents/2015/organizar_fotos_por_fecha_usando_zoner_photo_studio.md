@@ -1,3 +1,4 @@
+
 # Organizar fotos por fecha usando Zoner Photo Studio {#2015_07}
 
 En mi caso me gusta organizar las fotografías que hago por fechas. La estructura de carpetas que uso es la de Año-Mes-Dia, de esta forma se quedan lar carpetas ordenadas de forma cronológica.
@@ -9,12 +10,14 @@ Lo que cuento el los siguientes puntos es válido tanto para las versiones grati
 Se ha de estar en la pestaña **Manager**, dentro de la carpeta a organizar.
 Se selecciona el menú: `Organize` > `Sort Pictures` o se pulsa directamente `ctrl` + `o`.
 Dentro de la pantalla:
+
 * **Enter source drive or paht:** -> se deja como está el programa ha dejado el nombre de la carpeta en la que estamos.
 * **Select picture sorting method** -> se selecciona **Custom** y en la casilla de abajo se introduce `{TM#FD:"yyyy-MM-dd"} `
 * **Choose a target folder for the pictures:** -> Se selecciona la carpeta destino.
 * Se pulsa `Next`.
 
 En la siguiente pantalla:
+
 * Se selecciona lo siguiente:
  * Bitmap
  * Vector
@@ -25,6 +28,7 @@ En la siguiente pantalla:
 * Se pulsa `Next`.
 
 En la siguiente pantalla:
+
 * Se seleccionan todas las carpetas que se quieran escanear y ordenar
 * Se selecciona la opción **Include subfolders in selection**.
 * Se pulsa `finish`.
@@ -34,12 +38,14 @@ En la siguiente pantalla:
 Se ha de estar en la pestaña **Administrador**, dentro de la carpeta a organizar.
 Se selecciona el menú: `Organizar` > `Ordenar fotografías` o se pulsa directamente `ctrl` + `o`.
 Dentro de la pantalla:
+
 * **Introduzca la unidad de origen o la ruta:** -> se deja como está el programa ha dejado el nombre de la carpeta en la que estamos.
 * **Seleccione el método de ordenación de fotografías** -> se selecciona **Personalizado** y en la casilla de abajo se introduce `{TM#FD:"yyyy-MM-dd"} `
 * **Elija una carpeta de destino para sus fotografías:** -> Se selecciona la carpeta destino.
 * Se pulsa `Siguiente`.
 
 En la siguiente pantalla:
+
 * Se selecciona lo siguiente:
  * Mapa de bits
  * Vector
@@ -50,6 +56,7 @@ En la siguiente pantalla:
 * Se pulsa `Siguiente`.
 
 En la siguiente pantalla:
+
 * Se seleccionan todas las carpetas que se quieran escanear y ordenar
 * Se selecciona la opción **Incluir subcarpetas en la selección**.
 * Se pulsa `finish`.

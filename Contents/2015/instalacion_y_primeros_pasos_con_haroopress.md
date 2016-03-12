@@ -59,12 +59,10 @@ Checking connectivity... done.
 
 Los comandos ejecutados han sido:
 
-``` bash
+``` sh
 cd haroopress_test
-
 git config --global user.email "email"
 git config --global user.name "username"
-
 sudo make init
 ```
 

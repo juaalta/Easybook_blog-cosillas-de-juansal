@@ -19,6 +19,7 @@ En este caso el VMnet2 ha de estar creado y asignado a una tarjeta de red, si no
 
 En este programa hay que cambiar las opciones automáticas del vmnet0 para que seleccione el adaptador que deseemos.
 Si tenemos el VMware Player este programa no se instala, pero hay una forma de instalarlo, ya que sí que se encuentra dentro del instalable. Para hacer esto se han de seguir los siguientes pasos:
+
 * Descomprimir el instalable mendiante el comando: `VMware-player-4.0.1-528992.exe /e .\extract`
 * Entrar en la carpeta *extract* y buscar el fichero *network.cab*.
 * Del fichero este obtener el fichero *vmnetcfg.exe*,

@@ -7,6 +7,7 @@ Los 3 primeros botones son los encargados del encendido y apagado, y los 2 resta
 ![Botones de encendido y apagado de la máquina](Mueble_19.jpg "Botones de encendido y apagado de la máquina")
 
 La funcionalidad de estos 5 botones es (de izquierda a derecha):
+
 * Encender / Apagar el PC
 * Resetear el PC
 * Encender / Apagar el monitor

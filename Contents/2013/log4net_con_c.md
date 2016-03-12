@@ -50,19 +50,19 @@ El fichero de configuración del Log4Net ha de llamarse `Configuracion.log4net` 
 <?xml version="1.0" encoding="utf-8" ?>
 <log4net>
   <appender name="RollingLogFileAppender" type="log4net.Appender.RollingFileAppender">
-    <file value="log\Mtmnet.log" />
-    <appendToFile value="true" />
-    <rollingStyle value="Size" />
-    <maxSizeRollBackups value="10" />
-    <maximumFileSize value="10MB" />
-    <staticLogFileName value="true" />
-    <layout type="log4net.Layout.PatternLayout">
-      <conversionPattern value="%d [%t] %-5p %c - %m%n" />
-    </layout>
+	<file value="log\Mtmnet.log" />
+	<appendToFile value="true" />
+	<rollingStyle value="Size" />
+	<maxSizeRollBackups value="10" />
+	<maximumFileSize value="10MB" />
+	<staticLogFileName value="true" />
+	<layout type="log4net.Layout.PatternLayout">
+	  <conversionPattern value="%d [%t] %-5p %c - %m%n" />
+	</layout>
   </appender>
   <root>
-    <level value="ALL" />
-    <appender-ref ref="RollingLogFileAppender" />
+	<level value="ALL" />
+	<appender-ref ref="RollingLogFileAppender" />
   </root>
 </log4net>
 ```

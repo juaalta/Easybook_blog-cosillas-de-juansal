@@ -5,7 +5,7 @@
 
 ### Includes mínimos
 
-``` c++
+``` cpp
 #include <U8glib.h>
 #include <M2tk.h>
 #include <utility/m2ghu8g.h>
@@ -16,13 +16,13 @@
 
 Esta declaración se ha de descomentar, si ya está o añadir al código.
 
-``` c++
+``` cpp
 U8GLIB_MINI12864 u8g(21, 20, 19, 22);
 ```
 
 ### Gestión de botones
 
-``` c++
+``` cpp
 uint8_t uiKeyUpPin = 7;
 uint8_t uiKeyDownPin = 3;
 uint8_t uiKeySelectPin = 2;
@@ -57,7 +57,7 @@ case M2_ES_MSG_INIT:
 
 ### A incluir dentro del método setup()
 
-``` c++
+``` cpp
 void industruino_Menu_setup(void) {
 
   //flip the screen 180°
@@ -76,7 +76,7 @@ void industruino_Menu_setup(void) {
 
 ### Método loop()
 
-``` c++
+``` cpp
 void industruino_Menu_loop() {
   // menu management
   m2.checkKey();
@@ -92,7 +92,7 @@ do {
 
 ### Métodos adicionales a añadir
 
-``` c++
+``` cpp
 Método draw:
 
 void draw(void) {
